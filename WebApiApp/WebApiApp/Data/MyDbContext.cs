@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebApiApp.DataDB;
 
 namespace WebApiApp.Data
 {
@@ -15,6 +16,9 @@ namespace WebApiApp.Data
         public DbSet<Loai> Loais { get; set; }
         public DbSet<DonHang> DonHangs { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<CategoryProduct> CategoryProducts { get; set; }
+
         #endregion
 
         // entity.ToTable("Tên bảng")
@@ -35,6 +39,19 @@ namespace WebApiApp.Data
             //Write Fluent API configurations here
 
             //Property Configurations
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.ToTable("Product");
+                entity.HasKey(p => p.ProductId);
+                entity.Property(p => p.ProductName).IsRequired().HasMaxLength(100);
+                entity.Property(p => p.ProductDescription).HasColumnType("nvarchar(max)");
+                entity.HasOne(e => e.Category)
+                .WithMany(e => e.Products)
+                .HasForeignKey(e => e.CategoryID)
+                .HasConstraintName("FK_PRODUCT_TO_CATEGORY");
+            });
+
             modelBuilder.Entity<DonHang>(entity =>
             {
                 // nếu không định nghĩa table thì sẽ lấy DonHangs DbSet
@@ -58,10 +75,10 @@ namespace WebApiApp.Data
                       .HasForeignKey(e => e.MaDh)
                       .HasConstraintName("FK_ORDERDETAIL_TO_DONHANG"); // orderDetail qua Donhang
 
-                entity.HasOne(e => e.HangHoa) 
-                      .WithMany(e => e.OrderDetails) 
+                entity.HasOne(e => e.HangHoa)
+                      .WithMany(e => e.OrderDetails)
                       .HasForeignKey(e => e.MaHh)
-                      .HasConstraintName("FK_ORDERDETAIL_TO_HANGHOA"); 
+                      .HasConstraintName("FK_ORDERDETAIL_TO_HANGHOA");
             });
         }
     }
