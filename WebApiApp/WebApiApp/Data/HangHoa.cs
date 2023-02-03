@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApiApp.Models;
 
 namespace WebApiApp.Data
 {
@@ -28,5 +30,11 @@ namespace WebApiApp.Data
         [ForeignKey("MaLoai")]
         public Loai Loai { get; set; }
 
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public HangHoa()
+        {
+            OrderDetails = new HashSet<OrderDetail>();
+        }
     }
 }

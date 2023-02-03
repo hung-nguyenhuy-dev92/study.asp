@@ -69,11 +69,7 @@ namespace WebApiApp.Controllers
                 // save lên database
                 _context.SaveChanges();
 
-                return Ok(new
-                {
-                    Seccess = true,
-                    Data = loai
-                });
+                return StatusCode(StatusCodes.Status201Created, loai);
             }
             catch
             {
