@@ -8,7 +8,7 @@ namespace WebApiApp.Data
         // config connect database khai báo hàm tạo các optional kế thừa class cha
         public MyDbContext(DbContextOptions options): base(options) { }
 
-        // map thành db hoặc table
+        // map thành db hoặc table lưu ý: muốn thêm bảng và tạo trong DB bắt buộc phải định nghĩa ở dưới DbSet 
 
         #region DbSet
         public DbSet<HangHoa> HangHoas { get; set; }
