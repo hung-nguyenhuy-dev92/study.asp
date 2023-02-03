@@ -100,8 +100,9 @@ namespace WebApiApp.Controllers
                     Data = hangHoa
                 });
             }
-            catch
+            catch (Exception ex)
             {
+                //Console.Write("The first element is ", ex);
                 return BadRequest();
             }
 
