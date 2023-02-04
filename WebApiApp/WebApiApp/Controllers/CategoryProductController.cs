@@ -100,7 +100,7 @@ namespace WebApiApp.Controllers
                     return Ok(new
                     {
                         Seccess = true,
-                        Data = id
+                        Data = data
                     });
                 }
                 return BadRequest();
