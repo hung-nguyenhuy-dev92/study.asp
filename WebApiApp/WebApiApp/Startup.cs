@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApiApp.Data;
+using WebApiApp.Repositorys.Products;
+using WebApiApp.Services;
 
 namespace WebApiApp
 {
@@ -35,6 +37,8 @@ namespace WebApiApp
             {
                 option.UseSqlServer(Configuration.GetConnectionString("MyDB"));
             });
+
+            services.AddScoped<MyCategoryProductRepository, CategoryProductRepository>();
 
             services.AddSwaggerGen(c =>
             {

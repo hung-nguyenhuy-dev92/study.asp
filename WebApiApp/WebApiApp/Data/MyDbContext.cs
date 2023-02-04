@@ -40,6 +40,13 @@ namespace WebApiApp.Data
 
             //Property Configurations
 
+            modelBuilder.Entity<CategoryProduct>(entity =>
+            {
+                entity.ToTable("CategorysProduct");
+                entity.HasKey(c => c.CategoryID);
+                entity.Property(c => c.CategoryName).IsRequired().HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product");
