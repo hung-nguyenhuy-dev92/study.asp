@@ -39,6 +39,7 @@ namespace WebApiApp
             });
 
             services.AddScoped<MyCategoryProductRepository, CategoryProductRepository>();
+            services.AddScoped<MyProductRepository, ProductRepository>();
 
             services.AddSwaggerGen(c =>
             {
