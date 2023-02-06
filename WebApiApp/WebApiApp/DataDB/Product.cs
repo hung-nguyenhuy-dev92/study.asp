@@ -12,6 +12,6 @@ namespace WebApiApp.DataDB
 
         public int? CategoryID { get; set; }
 
-        public CategoryProduct Category { get; set; }
+        public virtual CategoryProduct Category { get; set; }
     }
 }

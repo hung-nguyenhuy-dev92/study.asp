@@ -13,6 +13,7 @@ namespace WebApiApp.Models.Product
         [Required]
         [Range(0, double.MaxValue)]
         public double ProductPrice { get; set; }
+        public int? CategoryID { get; set; }
         public byte ProductSales { get; set; }
     }
 }
