@@ -106,6 +106,7 @@ namespace WebApiApp.Services
                         CategoryName = category.CategoryName,
                     }
                 });*/
+            
             var products = _context.Products.AsNoTracking().Include(p => p.Category).ToList();
             return products;
         }
