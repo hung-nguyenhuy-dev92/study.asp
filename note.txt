@@ -1,0 +1,55 @@
+https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-5.0
+https://codelearn.io/sharing/thread-va-tasks-trong-csharp      => async await
+https://viblo.asia/p/lap-trinh-bat-dong-bo-trong-c-DZrGNDoWkVB
+https://www.w3schools.com/cs/cs_method_parameters.php
+https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task.whenall?redirectedfrom=MSDN&view=net-7.0#overloads
+https://www.youtube.com/watch?v=CmdheJaN7MI&list=PLE5Bje814fYbhdwSHiHN9rlwJlwJ2YD3t&index=3
+https://www.youtube.com/watch?v=ZLvLZUDqSX0&list=PLwJr0JSP7i8DXGzj8NgnhOApBMRhWD4J-&index=15
+https://www.youtube.com/watch?v=-LAeEQSfOQk&list=PL82C6-O4XrHdiS10BLh23x71ve9mQCln0&index=6
+f10 chỉ vào biến mình đặt
+promise all tương đương với await Task.WhenAll(tasks);
+dotnet restore -> update .net fw mình mới cài vào visual studio 
+format code: ctrl + K, ctrl + D
+Models : dùng để chứa các danh sách models trao đổi dữ liệu giữa gọi và truyền param lên api
+Services: 
+Helpers: dùng để viết handle nhưng công dụng đùng chung (common)
+Entity Data: là gì
+
+add an initial Migration
+tìm hiểu cách khai báo của dependencies
+connect database sẽ thường được config trong appsettings.json
+cài thêm packages trong dependencies -> chuột phải vào dependencies chọn manage nuget packages và chọn microsoft core (lưu ý version net core của project)
+migration bằng tool thi vào tools -> Nuget package manager -> package manager console -> chạy lệnh Add-Migration tên-Migration-mucdich 
+lưu ý: 
+- (cứ mỗi lần migration sẽ sinh ra 1 file) - remove migration thì sẽ remove thằng gần nhất
+- đã update database thì ko được remove migraton (muốn remove thì phải tự tạo viết migration khác)
+
+Fluent API in Entity Framework Core:
+tạo database trên server -> Update-Database
+https://sqldbm.com/Home/ -> tool để vẽ database table relationship
+https://entityframeworkcore.com/
+https://www.entityframeworktutorial.net/efcore/fluent-api-in-entity-framework-core.aspx
+fluent api: định nghĩa rõ ràng relationship (mối quan hệ) giữa các bảng, ràng buộc các thuộc tính trong bảng.
+
+Controller Action Return Type & HTTP Status Code: 
+https://learn.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-5.0
+1xx: informational response
+2xx: seccess
+- 200 Ok - request has seccessded
+- 201 Created - a new resource has been created as a result (dành cho nhưng api tạo sẽ trả về cho 1 object vừa tạo)
+- 204 No content - No need to return a response body (thường dùng cho api update sẽ trả về cho là no content) NoContent()
+lưu ý có thể gộp 201 hoặc 204 thành 200 cũng được
+3xx: redirection
+4xx: client error
+- 400 Bed Request:  the request could not be understood by server due to malformed syntax (server không hiểu nhưng gì client gửi lên)
+- 401 Unauthorized: Request requires user authentication (cần phải chứng thực người dùng nghĩa là mình cần phải đăng nhập)
+- 403 Forbidden: Unauthorized request (xác mình người dùng xong rồi nhưng có quyền (authorized) trên api)
+- 404 Not Found: (tìm kiếm lấy theo id mà ko có id đó)
+- 405 Method not allowed (mothod bị lộn method là post nhưng mình lại request là get)
+- 422 Unprocessable entity (trong quá trình post put thường request object lên body nhưng object bị thiếu hoặc sai cú pháp)
+5xx: server error
+500
+503
+504
+
+Tìm hiểu về life cycle of dependencies injection 
